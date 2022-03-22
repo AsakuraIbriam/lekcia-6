@@ -1,0 +1,54 @@
+
+#include <stdio.h>
+#include <stdlib.h>
+
+
+unsigned recursiveFactorial(int n);
+double recMul(double in, int n);
+
+
+int main()
+{
+	float x,Q,sum=0;
+	int i,j,limit;
+
+	printf("Enter the value of x of sinx series: ");
+	scanf("%f",&x);
+
+	printf("Enter the limit upto which you want to expand the series: ");
+	scanf("%d",&limit);
+
+	Q=x;
+	x = x*(3.1415/180);
+
+	for(i=1,j=1;i<=limit;i++,j=j+2)
+	{
+		if(i%2!=0)
+		{
+			sum=sum+recMul(x,j)/recursiveFactorial(j);
+		}
+		else
+			sum=sum-recMul(x,j)/recursiveFactorial(j);
+	}
+
+	printf("Sin(%0.1f): %f",Q,sum);
+	return 0;
+}
+unsigned recursiveFactorial(int n ) {
+    if(n >= 1) {
+        return n*recursiveFactorial(n - 1);
+    } else {
+        return 1;
+    }
+}
+
+
+
+double recMul(double in, int n) {
+    if(n != 0) {
+        return in * recMul(in, n - 1);
+    } else {
+        return 1;
+    }
+}
+
